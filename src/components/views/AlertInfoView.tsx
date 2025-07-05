@@ -102,12 +102,11 @@ const AlertInfoView: React.FC = () => {
 
       {/* Incident Details and Video Player */}
       <div style={{ marginTop: '20px', borderRadius: '8px' }}>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', gap: '15px' }}>
           <div className="material-background" style={{ 
             borderRadius: '8px', 
-            margin: '0 10px 10px 0', 
             padding: '20px',
-            backgroundColor: '#20242f' // Exact MaterialDesignControlBackground color
+            backgroundColor: '#171b26' // Exact MaterialDesignControlBackground color
           }}>
             <div style={{ display: 'flex' }}>
               <div style={{ marginRight: '20px' }}>
@@ -162,8 +161,18 @@ const AlertInfoView: React.FC = () => {
                 
                 <div style={{ margin: '10px 0' }}>
                   <span 
-                    className="status-badge" 
-                    style={{ backgroundColor: statusToColor(selectedIncident.status) }}
+                    style={{
+                      display: 'inline-block',
+                      padding: '4px 8px',
+                      backgroundColor: statusToColor(selectedIncident.status),
+                      borderRadius: '12px',
+                      marginRight: '10px',
+                      marginBottom: '5px',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      color: '#ffffff',
+                      border: `1px solid ${statusToColor(selectedIncident.status)}`
+                    }}
                   >
                     {selectedIncident.status}
                   </span>
@@ -184,8 +193,7 @@ const AlertInfoView: React.FC = () => {
           <div className="material-background" style={{ 
             flex: 1, 
             borderRadius: '8px', 
-            margin: '10px 0', 
-            backgroundColor: '#20242f', // Exact MaterialDesignControlBackground color
+            backgroundColor: '#171b26', // Exact MaterialDesignControlBackground color from WPF
             overflow: 'hidden' 
           }}>
             <VideoPlayerView />

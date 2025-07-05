@@ -115,11 +115,11 @@ const EntityView: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: '20px', height: '100%', backgroundColor: '#0d111d' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h2 className="headline6">Entities</h2>
-        <button className="secondary-button" onClick={handleRefreshEntities}>
+        <h2 className="headline6" style={{ margin: 0, fontSize: '20px', fontWeight: 500 }}>Entities</h2>
+        <button className="secondary-button" onClick={handleRefreshEntities} style={{ backgroundColor: '#171b26', border: 'none', padding: '8px 12px', borderRadius: '4px', cursor: 'pointer', color: 'white' }}>
           <span style={{ display: 'flex', alignItems: 'center' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
@@ -131,13 +131,20 @@ const EntityView: React.FC = () => {
 
       {/* Entity Details */}
       {isEntityDetailsVisible && selectedEntity && (
-        <div className="material-control-background" style={{ marginTop: '20px', borderRadius: '8px' }}>
+        <div className="material-control-background" style={{ marginTop: '20px', borderRadius: '8px', backgroundColor: '#0d111d' }}>
           <div style={{ margin: '15px' }}>
             <div style={{ display: 'flex', gap: '15px' }}>
-              <div className="material-background" style={{ flex: 1, borderRadius: '5px', padding: '20px' }}>
+              <div className="material-background" style={{ flex: 1, borderRadius: '5px', padding: '20px', backgroundColor: '#171b26' }}>
                 <button 
                   className="icon-button" 
-                  style={{ float: 'right' }}
+                  style={{ 
+                    float: 'right', 
+                    border: 'none', 
+                    background: 'transparent', 
+                    color: 'white', 
+                    cursor: 'pointer',
+                    padding: '4px'
+                  }}
                   onClick={handleClose}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -166,11 +173,16 @@ const EntityView: React.FC = () => {
                   <div>
                     <strong>Status:</strong> 
                     <span 
-                      className="status-badge" 
                       style={{ 
+                        display: 'inline-block',
+                        padding: '4px 8px',
                         backgroundColor: getStatusColor(selectedEntity.status), 
+                        borderRadius: '12px', 
                         marginLeft: '8px',
-                        padding: '3px 8px'
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        color: '#ffffff',
+                        border: `1px solid ${getStatusColor(selectedEntity.status)}`
                       }}
                     >
                       {selectedEntity.status}
@@ -190,19 +202,22 @@ const EntityView: React.FC = () => {
                   <div style={{ 
                     marginTop: '20px', 
                     height: '150px', 
-                    backgroundColor: '#2A303C', 
+                    backgroundColor: '#1A1F27', 
                     borderRadius: '5px', 
                     display: 'flex', 
                     alignItems: 'center', 
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontSize: '14px'
                   }}>
                     No Image Available
                   </div>
                 )}
               </div>
               
-              <div className="material-background" style={{ flex: 1, borderRadius: '5px', padding: '20px' }}>
-                <h3 className="headline6">Related Incidents</h3>
+              <div className="material-background" style={{ flex: 1, borderRadius: '5px', padding: '20px', backgroundColor: '#171b26' }}>
+                <h3 className="headline6" style={{ marginTop: 0, marginBottom: '15px', fontSize: '16px', fontWeight: 500 }}>Related Incidents</h3>
                 
                 {relatedIncidents.length > 0 ? (
                   <div style={{ marginTop: '15px' }}>
@@ -211,12 +226,15 @@ const EntityView: React.FC = () => {
                         key={index} 
                         className="material-control-background"
                         style={{ 
-                          padding: '10px',
+                          padding: '12px 15px',
                           borderRadius: '5px', 
                           marginBottom: '10px',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: '10px'
+                          gap: '10px',
+                          backgroundColor: '#0d111d',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.2s ease'
                         }}
                         onClick={() => handleViewIncident(incident)}
                       >
@@ -224,13 +242,20 @@ const EntityView: React.FC = () => {
                           <div>
                             <span style={{ fontWeight: 'bold' }}>{incident.incidentId}</span>
                             <span 
-                              className="status-badge" 
                               style={{ 
+                                display: 'inline-block',
+                                padding: '4px 8px',
                                 backgroundColor: incident.status === 'Active' ? '#FF9800' : 
                                   incident.status === 'Confirmed' ? '#4CAF50' : 
                                   '#F44336',
+                                borderRadius: '12px',
                                 marginLeft: '8px',
-                                fontSize: '0.8em'
+                                fontSize: '12px',
+                                fontWeight: 'bold',
+                                color: '#ffffff',
+                                border: `1px solid ${incident.status === 'Active' ? '#FF9800' : 
+                                  incident.status === 'Confirmed' ? '#4CAF50' : 
+                                  '#F44336'}`
                               }}
                             >
                               {incident.status}
@@ -249,8 +274,15 @@ const EntityView: React.FC = () => {
                     marginTop: '20px', 
                     padding: '30px', 
                     textAlign: 'center', 
-                    backgroundColor: '#2A303C',
-                    borderRadius: '5px'
+                    backgroundColor: '#0d111d',
+                    borderRadius: '5px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontSize: '14px',
+                    height: '150px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}>
                     No related incidents found
                   </div>
@@ -263,17 +295,20 @@ const EntityView: React.FC = () => {
 
       {/* Filters Section */}
       <div style={{ display: 'flex', margin: '20px 0 10px' }}>
-        <span style={{ marginRight: '10px', alignSelf: 'center' }}>Filters:</span>
+        <span style={{ marginRight: '10px', alignSelf: 'center', color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontFamily: 'Segoe UI, sans-serif' }}>Filters:</span>
         {filters.map(filter => (
           <div 
             key={filter}
             style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: 'rgba(42, 48, 60, 1)',
+              backgroundColor: '#171b26',
               borderRadius: '16px',
               padding: '4px 12px',
               marginRight: '8px',
+              border: '1px solid #2a303c',
+              fontSize: '13px',
+              fontFamily: 'Segoe UI, sans-serif'
             }}
           >
             <span>{filter}</span>
@@ -283,7 +318,14 @@ const EntityView: React.FC = () => {
                 border: 'none',
                 cursor: 'pointer',
                 color: 'white',
-                marginLeft: '4px',
+                marginLeft: '6px',
+                fontSize: '16px',
+                padding: '0 2px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '18px',
+                width: '18px'
               }}
               onClick={() => handleRemoveFilter(filter)}
             >
@@ -294,16 +336,18 @@ const EntityView: React.FC = () => {
       </div>
 
       {/* Entity List */}
-      <div>
+      <div className="entities-container" style={{ marginTop: '20px' }}>
         {entities.map(entity => (
           <div 
             key={entity.entityId} 
             className="material-background" 
             style={{
-              margin: '10px 0',
-              padding: '15px',
+              margin: '0 0 15px 0',
+              padding: '15px 20px',
               borderRadius: '8px',
               cursor: 'pointer',
+              backgroundColor: '#171b26',
+              transition: 'background-color 0.2s ease'
             }}
             onClick={() => handleSelectEntity(entity)}
           >
@@ -311,8 +355,17 @@ const EntityView: React.FC = () => {
               <div>
                 <h4 style={{ margin: '0 0 5px 0' }}>{entity.name}</h4>
                 <span 
-                  className="status-badge" 
-                  style={{ backgroundColor: getStatusColor(entity.status) }}
+                  style={{ 
+                    display: 'inline-block',
+                    padding: '4px 8px',
+                    backgroundColor: getStatusColor(entity.status),
+                    borderRadius: '12px',
+                    marginRight: '10px',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    color: '#ffffff',
+                    border: `1px solid ${getStatusColor(entity.status)}`
+                  }}
                 >
                   {entity.status}
                 </span>
@@ -337,7 +390,22 @@ const EntityView: React.FC = () => {
 
         {/* Empty state */}
         {entities.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '50px', color: '#aaa' }}>
+          <div 
+            className="material-background" 
+            style={{ 
+              textAlign: 'center', 
+              padding: '50px', 
+              color: 'rgba(255, 255, 255, 0.7)',
+              backgroundColor: '#171b26',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontFamily: 'Segoe UI, sans-serif',
+              height: '300px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
             No entities to display. Use the Refresh button to check for new entities.
           </div>
         )}

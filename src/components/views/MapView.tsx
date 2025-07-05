@@ -5,16 +5,18 @@ const MapView: React.FC = () => {
   const [isLoading] = useState<boolean>(false);
   
   return (
-    <div>
-      <h2 className="headline6">Map View</h2>
+    <div style={{ padding: '20px', height: '100%', backgroundColor: '#0d111d' }}>
+      <div className="view-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h2 className="headline6" style={{ margin: 0, fontSize: '20px', fontWeight: 500 }}>Map</h2>
+      </div>
       
-      <div style={{ marginTop: '20px' }} className="material-background">
+      <div className="material-background" style={{ marginTop: '20px', backgroundColor: '#171b26', borderRadius: '8px' }}>
         {/* Map container */}
         <div 
           style={{ 
             height: '600px', 
             width: '100%', 
-            backgroundColor: '#252A36',
+            backgroundColor: '#1a1f27',
             borderRadius: '8px', 
             display: 'flex', 
             justifyContent: 'center', 
@@ -22,12 +24,15 @@ const MapView: React.FC = () => {
             position: 'relative'
           }}
         >
-          {/* Map placeholder - would be replaced with actual map component */}
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '24px', marginBottom: '10px' }}>Map Placeholder</div>
-            <div>
-              The actual map implementation would go here, integrating with a mapping library like Google Maps, Leaflet, or Mapbox.
-            </div>
+          {/* Map placeholder - exact match to C# WPF version */}
+          <div style={{ 
+            textAlign: 'center',
+            color: '#ffffff',
+            fontSize: '16px',
+            fontFamily: 'Segoe UI, sans-serif',
+            opacity: 0.7
+          }}>
+            Map Place Holder, Map Markers and popups must be drawn inside the map
           </div>
           
           {/* Loading indicator */}
@@ -95,8 +100,8 @@ const MapView: React.FC = () => {
       </div>
       
       {/* Legend */}
-      <div className="material-control-background" style={{ marginTop: '20px', borderRadius: '8px', padding: '15px' }}>
-        <h3 className="headline6" style={{ marginTop: 0 }}>Map Legend</h3>
+      <div className="material-control-background" style={{ marginTop: '20px', borderRadius: '8px', padding: '15px', backgroundColor: '#0d111d' }}>
+        <h3 className="headline6" style={{ marginTop: 0, marginBottom: '15px', fontSize: '16px', fontWeight: 500 }}>Map Legend</h3>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ 

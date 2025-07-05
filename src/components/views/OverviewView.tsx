@@ -359,10 +359,9 @@ const OverviewView: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {/* Incident Cards */}
+      {/* Incident Cards or Empty State */}
       <div>
-        {incidents.map(incident => (
+        {incidents.length > 0 ? incidents.map(incident => (
           <div 
             key={incident.incidentId} 
             className="material-background" 
@@ -400,12 +399,18 @@ const OverviewView: React.FC = () => {
               </div>
             </div>
           </div>
-        ))}
-
-        {/* Empty state when no incidents */}
-        {incidents.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '50px', color: '#aaa' }}>
-            No incidents to display. Use the Refresh button to check for new incidents.
+        )) : (
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            height: '300px', 
+            color: '#ffffff',
+            fontSize: '16px',
+            opacity: 0.7,
+            fontFamily: 'Segoe UI, sans-serif'
+          }}>
+            No incidents available
           </div>
         )}
       </div>

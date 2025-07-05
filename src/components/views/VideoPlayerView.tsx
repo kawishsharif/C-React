@@ -121,31 +121,33 @@ const VideoPlayerView: React.FC<VideoPlayerViewProps> = ({ videoUrl = placeholde
           )}
         </button>
         
-        {/* Current time display */}
+        {/* Current time display - exactly matching WPF implementation */}
         <div style={{ 
           position: 'absolute', 
-          top: '5px', 
-          right: '20px', 
-          fontSize: '10px', 
+          top: '10px', 
+          right: '15px', 
+          fontSize: '12px', 
           color: 'white', 
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-          padding: '2px 6px', 
-          borderRadius: '2px' 
+          backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+          padding: '3px 8px', 
+          borderRadius: '3px',
+          fontFamily: 'Segoe UI, sans-serif',
+          letterSpacing: '0.5px'
         }}>
-          {formatTime(currentTime)}
+          {formatTime(currentTime)} / {formatTime(duration)}
         </div>
       </div>
       
-      {/* Video timeline control (matching WPF VideoControl) */}
+      {/* Video timeline control (matching WPF VideoControl exactly) */}
       <div style={{ 
         height: '35px', 
-        backgroundColor: '#20242f', // Matches MaterialDesignControlBackground color
+        backgroundColor: '#171b26', // Exact match to WPF's MaterialDesignControlBackground color
         borderRadius: '0 0 8px 8px',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        padding: '0 10px',
-        margin: 0 // Matches WPF margin
+        padding: '0 15px', // Exact padding from WPF
+        margin: 0
       }}>
         <input
           type="range"
@@ -158,13 +160,13 @@ const VideoPlayerView: React.FC<VideoPlayerViewProps> = ({ videoUrl = placeholde
             backgroundColor: 'transparent',
             appearance: 'none',
             height: '4px',
-            borderRadius: '2px',
+            borderRadius: '4px', // Exact match to WPF slider thickness
             outline: 'none',
             opacity: '1',
             transition: 'opacity 0.2s',
             cursor: 'pointer',
-            // Custom range styling to match WPF
-            background: 'linear-gradient(to right, #95969b 0%, #95969b ' + (currentTime / duration * 100) + '%, #444 ' + (currentTime / duration * 100) + '%, #444 100%)'
+            // Custom range styling to exactly match WPF's slider appearance
+            background: `linear-gradient(to right, #3f8fff 0%, #3f8fff ${(currentTime / (duration || 1) * 100)}%, #555 ${(currentTime / (duration || 1) * 100)}%, #555 100%)`
           }}
         />
       </div>
